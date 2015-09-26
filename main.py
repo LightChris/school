@@ -15,7 +15,6 @@ for teacher in teachers:
 
 # TODO: №1.3
 cl = '6 А'
-# cl = input('Введите класс ученика(пример: "5 A"): ')
 print('\n\nЗадание 1.3\n')
 for student in students:
     if student['class'] == cl:
@@ -39,14 +38,25 @@ for student in students:
             if i == 2:
                 print(student['name'], ' ', student['surname'])
 
-
 # TODO: №2.1
-# print('\n\nЗадание 2.1\n')
-# teacher_students = []
-# teacher_full_name = 'Александр Сергеевич Черный'
-# for teacher in teachers:
-#     teach = teacher['name'] + ' ' + teacher['middle_name'] + ' ' + teacher['surname']
-#     if teacher_full_name == teach:
-#         for student in students:
-#             if student['school'] == teacher['school'] and student['class'] in teacher['class']:
-#                 teacher_students.append('')
+print('\n\nЗадание 2.1\n')
+class_list = []
+teacher_full_name = 'Владимир Вышкин'
+for teacher in teachers:
+    if teacher_full_name == '%s %s' % (teacher['name'], teacher['surname']):
+        class_list = teacher['class']
+
+for el in class_list:
+    for student in students:
+        if student['class'] == el:
+            print(student['surname'], student['name'], student['middle_name'])
+
+# TODO: №2.2
+print('\n\nЗадание 2.2\n')
+student_full_name = 'Александр Красный'
+for student in students:
+    if student['name'] + ' ' + student['surname'] == student_full_name:
+        for teacher in teachers:
+            if student['school'] == teacher['school'] and student['class'] in teacher['class']:
+                print(teacher['name'] + ' ' + teacher['middle_name'] + ' ' + teacher['surname'])
+        break
