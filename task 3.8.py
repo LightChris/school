@@ -19,14 +19,17 @@ def save(data, file_name):
     file.close()
 
 
-def get_index(data, surname):
-    for teacher in data:
-        if surname == teacher['surname']:
-            return data.index(teacher)
+def get_index(data, full_name):
+    for people in data:
+        if full_name == people['surname'] + ' ' + people['name'] + ' ' + people["middle_name"]:
+            return data.index(people)
 
 
-teacher_name = "Черный"
-new_class = '9 В'
+# def get_index_class(data, name):
+#     for cl in data[get_index(data, name)]:
 
-teachers_data.append(teachers_data[get_index(teachers_data, teacher_name)]['class'].append(new_class))
+teacher_full_name = "Черный Александр Сергеевич"
+delete_class = '7 В'
+
+teachers_data[get_index(teachers_data, teacher_full_name)]['class'].remove(delete_class)
 save(teachers_data, 'Teachers_new.json')

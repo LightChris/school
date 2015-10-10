@@ -3,7 +3,7 @@ import os
 
 DIR = '/home/chris/PycharmProjects/school/'
 
-teachers_data = json.load(open(os.path.join(DIR, 'Teachers.json'), 'r'))
+students_data = json.load(open(os.path.join(DIR, 'Students.json'), 'r'))
 
 
 def save(data, file_name):
@@ -19,14 +19,12 @@ def save(data, file_name):
     file.close()
 
 
-def get_index(data, surname):
-    for teacher in data:
-        if surname == teacher['surname']:
-            return data.index(teacher)
+def get_index(data, full_name):
+    for people in data:
+        if full_name == people['surname'] + ' ' + people['name'] + ' ' + people["middle_name"]:
+            return data.index(people)
 
 
-teacher_name = "Черный"
-new_class = '9 В'
-
-teachers_data.append(teachers_data[get_index(teachers_data, teacher_name)]['class'].append(new_class))
-save(teachers_data, 'Teachers_new.json')
+student_full_name = "Иванов Иван Игоревич"  # Ф.И.О.
+students_data.pop(get_index(students_data, student_full_name))
+save(students_data, 'Students_new.json')
