@@ -3,8 +3,6 @@ import os
 
 DIR = '/home/chris/PycharmProjects/school/'
 
-teachers_data = json.load(open(os.path.join(DIR, 'Teachers.json'), 'r'))
-
 
 def save(data, file_name):
     """
@@ -28,5 +26,8 @@ def get_index(data, surname):
 teacher_name = "Черный"
 new_class = '9 В'
 
-teachers_data.append(teachers_data[get_index(teachers_data, teacher_name)]['class'].append(new_class))
-save(teachers_data, 'Teachers_new.json')
+with open('Teachers_id.json', 'r') as teach:
+    teachers_data = json.load(teach)
+    teachers_data.append(teachers_data[get_index(teachers_data, teacher_name)]['class'].append(new_class))
+    save(teachers_data, 'Teachers_new.json')
+    pass

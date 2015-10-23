@@ -3,8 +3,6 @@ import os
 
 DIR = '/home/chris/PycharmProjects/school/'
 
-teachers_data = json.load(open(os.path.join(DIR, 'Teachers.json'), 'r'))
-
 
 def save(data, file_name):
     """
@@ -27,10 +25,13 @@ def get_index_school(data, school):
 
 teacher_school = '67 школа'
 
-for el in teachers_data:
-    i = get_index_school(teachers_data, teacher_school)
-    if i == None:
-        break
-    teachers_data.pop(i)
+with open('Teachers_id.json', 'r') as teach:
+    teachers_data = json.load(teach)
+    for el in teachers_data:
+        i = get_index_school(teachers_data, teacher_school)
+        if i == None:
+            break
+        teachers_data.pop(i)
 
-save(teachers_data, 'Teachers_new.json')
+    save(teachers_data, 'Teachers_new.json')
+    pass

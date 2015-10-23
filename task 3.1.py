@@ -17,10 +17,6 @@ def save(data, file_name):
     file.close()
 
 
-students_data = json.load(open(os.path.join(DIR, 'Students.json'), 'r'))
-# os.path.join - Вставляет нужный \ (Для исскуственного поддержания кросс-платформенности)
-# константа - переменная которая не должна изменятся
-
 student = {
     "name": "Петр",
     "middle_name": "Алексеевич",
@@ -66,11 +62,21 @@ student5 = {
     "birth_day": "66.66.6666"
 }
 
-students_data.append(student)
-students_data.append(student2)
-students_data.append(student3)
-students_data.append(student4)
-students_data.append(student5)
+with open('Students_id.json', 'r') as stud:
+    students_data = json.load(stud)
+    # os.path.join - Вставляет нужный \ (Для исскуственного поддержания кросс-платформенности)
+    # константа - переменная которая не должна изменятся
 
-save(students_data, 'Students_new.json')
+    students_data.append(student)
+    students_data.append(student2)
+    students_data.append(student3)
+    students_data.append(student4)
+    students_data.append(student5)
 
+    i = 1
+    for student in students_data:
+        student.setdefault('id', [i])
+        i += 1
+
+    save(students_data, 'Students_new.json')
+    pass

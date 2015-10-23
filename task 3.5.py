@@ -3,8 +3,6 @@ import os
 
 DIR = '/home/chris/PycharmProjects/school/'
 
-students_data = json.load(open(os.path.join(DIR, 'Students.json'), 'r'))
-
 
 def save(data, file_name):
     """
@@ -25,10 +23,14 @@ def get_index_class(data, cl):
             return data.index(people)
 
 
-for el in students_data:
-    i = get_index_class(students_data, '6 А')
-    if i == None:
-        break
-    students_data.pop(i)
+with open('Students_id.json', 'r') as stud:
+    students_data = json.load(stud)
 
-save(students_data, 'Students_new.json')
+    for el in students_data:
+        i = get_index_class(students_data, '6 А')
+        if i == None:
+            break
+        students_data.pop(i)
+
+    save(students_data, 'Students_new.json')
+    pass

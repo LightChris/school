@@ -17,8 +17,6 @@ def save(data, file_name):
     file.close()
 
 
-teachers_data = json.load(open(os.path.join(DIR, 'Teachers.json'), 'r'))
-
 teacher = {
     "name": "Андрей",
     "middle_name": "Владимирович",
@@ -60,8 +58,17 @@ teacher3 = {
     "birth_day": "04.08.1978"
 }
 
-teachers_data.append(teacher)
-teachers_data.append(teacher2)
-teachers_data.append(teacher3)
+with open('Teachers_id.json', 'r') as teach:
+    teachers_data = json.load(teach)
 
-save(teachers_data, 'Teachers_new.json')
+    teachers_data.append(teacher)
+    teachers_data.append(teacher2)
+    teachers_data.append(teacher3)
+
+    i = 1
+    for teacher in teachers_data:
+        teacher.setdefault('id', [i])
+        i += 1
+
+    save(teachers_data, 'Teachers_new.json')
+    pass
